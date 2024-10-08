@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
 
 import Dirash_Company.AbsractReusableComponent.AbstractComponent;
 
@@ -41,9 +41,11 @@ public class CartPage extends AbstractComponent{
 		return match;
 	}
 	
-	public void checkOut()
+	public CheckOutPage checkOut()
 	{
 		checkout.click();	
+		return new CheckOutPage(driver);
+		
 	}
 
 
