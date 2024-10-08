@@ -13,9 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import Dirash_Company.pageObjects.LandingPage;
-import Dirash_Company.pageObjects.ProductCatalogue;
 
-public class StandAloneTest {
+public class StandAloneTest2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -23,16 +22,21 @@ public class StandAloneTest {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         String product_Name = "ADIDAS ORIGINAL";
+		driver.get("https://rahulshettyacademy.com/client");
 		driver.manage().window().maximize();
 		LandingPage LandingPageObj = new LandingPage(driver);
-		LandingPageObj.goTo();
-		LandingPageObj.loginApplication("dirash@leena.ai", "Dirash@10");
-		ProductCatalogue ProductCatalogueobj = new ProductCatalogue(driver);
-		List<WebElement> products = ProductCatalogueobj.getProductlist();
-		ProductCatalogueobj.addProductToCart(product_Name);
-		ProductCatalogueobj.goToCartPage();
+		driver.findElement(By.id("userEmail")).sendKeys("dirash@leena.ai");
+		driver.findElement(By.id("userPassword")).sendKeys("Dirash@10");
+		driver.findElement(By.id("login")).click();
 		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".col-lg-4")));
+		List<WebElement> products = driver.findElements(By.cssSelector(".col-lg-4"));
+		WebElement prod =products.stream().filter(product->
+		product.findElement(By.cssSelector("b")).getText().equals(product_Name)).findFirst().orElse(null);
+		prod.findElement(By.cssSelector(".col-lg-4 button:last-child")).click();
 		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".toast-message")));
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));
 		driver.findElement(By.cssSelector("button[routerlink='/dashboard/cart']")).click();
 		
 		List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
