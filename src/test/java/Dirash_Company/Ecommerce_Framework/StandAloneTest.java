@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import Dirash_Company.pageObjects.CartPage;
 import Dirash_Company.pageObjects.LandingPage;
 import Dirash_Company.pageObjects.ProductCatalogue;
 
@@ -26,24 +27,22 @@ public class StandAloneTest {
 		driver.manage().window().maximize();
 		LandingPage LandingPageObj = new LandingPage(driver);
 		LandingPageObj.goTo();
-		LandingPageObj.loginApplication("dirash@leena.ai", "Dirash@10");
-		ProductCatalogue ProductCatalogueobj = new ProductCatalogue(driver);
+		ProductCatalogue ProductCatalogueobj = LandingPageObj.loginApplication("dirash@leena.ai", "Dirash@10");
+		
 		List<WebElement> products = ProductCatalogueobj.getProductlist();
 		ProductCatalogueobj.addProductToCart(product_Name);
-		ProductCatalogueobj.goToCartPage();
+		CartPage CartPageobj = ProductCatalogueobj.goToCartPage();
 		
-		
-		driver.findElement(By.cssSelector("button[routerlink='/dashboard/cart']")).click();
-		
-		List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
-		Boolean match =cartProducts.stream().anyMatch(product->product.getText().equals(product_Name));
+		Boolean match =CartPageobj.veriftProductDisplay(product_Name);
 		Assert.assertTrue(match);
+		CartPageobj.checkOut();
 		
-		driver.findElement(By.cssSelector(".totalRow button")).click();		
 		
-		Actions act = new Actions(driver);
-		act.sendKeys(driver.findElement(By.cssSelector("input[placeholder='Select Country']")),"india").build().perform();
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
+			
+		
+//		Actions act = new Actions(driver);
+//		act.sendKeys(driver.findElement(By.cssSelector("input[placeholder='Select Country']")),"india").build().perform();
+//	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
 	    
 	    driver.findElement(By.xpath("(//button[contains(@class,'ta-item')])[2]")).click();
 	    driver.findElement(By.cssSelector(".action__submit")).click();
