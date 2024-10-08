@@ -11,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import Dirash_Company.pageObjects.CartPage;
+
 public class AbstractComponent {
 	
 	WebDriver driver;
@@ -36,9 +38,11 @@ public class AbstractComponent {
 		wait.until(ExpectedConditions.invisibilityOf(element));
 	}
 	
-	public void goToCartPage()
+	public CartPage goToCartPage()
 	{
 		cartHeader.click();
+		CartPage CartPageobj = new CartPage(driver);
+		return CartPageobj;
 
 	}
 }

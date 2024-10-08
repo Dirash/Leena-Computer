@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import Dirash_Company.AbsractReusableComponent.AbstractComponent;
 
@@ -25,37 +26,25 @@ public class CartPage extends AbstractComponent{
 		PageFactory.initElements(driver, this);
 	}
 	
-	
-	@FindBy(css=".col-lg-4")
-	List<WebElement> products;
-	
-	@FindBy(css=".ng-animating")
-	WebElement spinner;
-	
-	By productsBy = By.cssSelector(".col-lg-4");
-	By AddToCart = By.cssSelector(".col-lg-4 button:last-child");
-	By toastMessage = By.cssSelector(".toast-message");
-	
-	public List<WebElement> getProductlist()
-	{
 		
-		waitForElementToAppear(productsBy);
-		return products;
-	}
 	
-	public WebElement getProductByName(String product_Name)
+	@FindBy(css=".cartSection h3")
+	List<WebElement> cartProducts;
+	
+	@FindBy(css=".totalRow button")
+	WebElement checkout;
+	
+	
+	public Boolean veriftProductDisplay(String product_Name)
 	{
-		WebElement prod =getProductlist().stream().filter(product->
-		product.findElement(By.cssSelector("b")).getText().equals(product_Name)).findFirst().orElse(null);
-		return prod;
+		Boolean match =cartProducts.stream().anyMatch(product->product.getText().equals(product_Name));
+		return match;
 	}
 	
+	public void checkOut()
+	{
+		checkout.click();	
+	}
 
-	public void addProductToCart(String product_Name)
-	{
-		WebElement prod = getProductByName(product_Name);
-		prod.findElement(AddToCart).click();
-		waitForElementToAppear(toastMessage);
-		waitForElementToDissapear(spinner);	
-	}
+
 }
