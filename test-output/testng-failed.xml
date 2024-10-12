@@ -5,6 +5,8 @@
     <classes>
       <class name="Dirash_Company.Ecommerce_Framework.StandAloneTest">
         <methods>
+          <include name="closeBrowser"/>
+          <include name="LaunchApplication"/>
           <include name="submitOrder"/>
         </methods>
       </class> <!-- Dirash_Company.Ecommerce_Framework.StandAloneTest -->

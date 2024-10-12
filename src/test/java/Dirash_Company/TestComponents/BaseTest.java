@@ -8,12 +8,15 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import Dirash_Company.pageObjects.LandingPage;
 
 public class BaseTest {
 	
-	WebDriver driver;
+	public WebDriver driver;
+	public LandingPage LandingPageObj;
 	public WebDriver initializer() throws IOException
 	{
 	Properties prop = new Properties();
@@ -41,12 +44,19 @@ public class BaseTest {
 	
 	}
 	
+	@BeforeMethod
 	public LandingPage LaunchApplication() throws IOException
 	{
 		driver = initializer();
-		LandingPage LandingPageObj = new LandingPage(driver);
+	    LandingPageObj = new LandingPage(driver);
 		LandingPageObj.goTo();
 		return LandingPageObj;
+	}
+	
+	@AfterMethod
+	public void closeBrowser()
+	{
+		 driver.quit();
 	}
 
 }

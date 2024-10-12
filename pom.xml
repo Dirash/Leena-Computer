@@ -28,11 +28,12 @@
 
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
-    <groupId>org.testng</groupId>
-    <artifactId>testng</artifactId>
-    <version>7.9.0</version>
-    <scope>test</scope>
-</dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.10.2</version>
+			<scope>test</scope>
+		</dependency>
+		
 
 	</dependencies>
 
