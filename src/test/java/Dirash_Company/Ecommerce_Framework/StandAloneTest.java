@@ -50,8 +50,7 @@ public class StandAloneTest extends BaseTest {
 	@DataProvider
 	public Object[][] getData() throws IOException
 	{
-		List<HashMap<String, String>> data = getJsonData("user.dir" + "\\src\\test\\java\\Dirash_Company\\data\\PurchaseOrder.json");
-
+		List<HashMap<String, String>> data = getJSONDatatoMap(System.getProperty("user.dir") + "\\src\\test\\java\\Dirash_Company\\data\\PurchaseOrder.json");
 		return new Object[][] {{data.get(0)},{data.get(1)}};
 			
 	}

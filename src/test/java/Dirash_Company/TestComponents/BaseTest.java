@@ -53,7 +53,7 @@ public class BaseTest {
 	
 	}
 	
-	public List<HashMap<String, String>> getJsonData(String file) throws IOException
+	public List<HashMap<String, String>> getJSONDatatoMap(String file) throws IOException
 	{
 		// read json to string
 		String jsonVariable = FileUtils.readFileToString(
