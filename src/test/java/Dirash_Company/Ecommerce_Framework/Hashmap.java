@@ -16,7 +16,7 @@ import Dirash_Company.pageObjects.ConfirmationPage;
 import Dirash_Company.pageObjects.OrderPage;
 import Dirash_Company.pageObjects.ProductCatalogue;
 
-public class StandAloneTest extends BaseTest {
+public class Hashmap extends BaseTest {
 
 	String product_Name = "ADIDAS ORIGINAL";
 	@Test(dataProvider = "getData",groups = "purchaseOrder")
@@ -48,12 +48,22 @@ public class StandAloneTest extends BaseTest {
 	}
 	
 	@DataProvider
-	public Object[][] getData() throws IOException
+	public String[][] getData()
 	{
-		List<HashMap<String, String>> data = getJsonData("user.dir" + "\\src\\test\\java\\Dirash_Company\\data\\PurchaseOrder.json");
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("email","dirash@leena.ai");
+		map.put("password", "Dirash@10");
+		map.put("product_Name", "ADIDAS ORIGINAL");
+		
+		HashMap<String, String> map2 = new HashMap<String, String>();
+		map2.put("email","dirash+2@leena.ai");
+		map2.put("password", "Dirash@10");
+		map2.put("product_Name", "ZARA COAT 3");
+	
 
-		return new Object[][] {{data.get(0)},{data.get(1)}};
-			
+		return new String[][] {{map},{map2}};
+		
+		
 	}
 
 }

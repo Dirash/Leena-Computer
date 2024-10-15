@@ -1,7 +1,6 @@
 package Dirash_Company.Ecommerce_Framework;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -16,19 +15,19 @@ import Dirash_Company.pageObjects.ConfirmationPage;
 import Dirash_Company.pageObjects.OrderPage;
 import Dirash_Company.pageObjects.ProductCatalogue;
 
-public class StandAloneTest extends BaseTest {
+public class Object extends BaseTest {
 
 	String product_Name = "ADIDAS ORIGINAL";
 	@Test(dataProvider = "getData",groups = "purchaseOrder")
-	public void submitOrder(HashMap<String ,String> input) throws IOException
+	public void submitOrder(String email,String password, String product_Name) throws IOException
 	{
 		// TODO Auto-generated method stub
 		        
-        ProductCatalogue ProductCatalogueobj = LandingPageObj.loginApplication(input.get("email"), input.get("password"));
+        ProductCatalogue ProductCatalogueobj = LandingPageObj.loginApplication(email, password);
 		List<WebElement> products = ProductCatalogueobj.getProductlist();
-		ProductCatalogueobj.addProductToCart(input.get(product_Name));
+		ProductCatalogueobj.addProductToCart(product_Name);
 		CartPage CartPageobj = ProductCatalogueobj.goToCartPage();
-		Boolean match =CartPageobj.veriftProductDisplay(input.get(product_Name));
+		Boolean match =CartPageobj.veriftProductDisplay(product_Name);
 		Assert.assertTrue(match);
 		CheckOutPage CheckOutPageobj = CartPageobj.checkOut();
 		CheckOutPageobj.selectCountry("india");
@@ -48,12 +47,11 @@ public class StandAloneTest extends BaseTest {
 	}
 	
 	@DataProvider
-	public Object[][] getData() throws IOException
+	public Object[][] getData()
 	{
-		List<HashMap<String, String>> data = getJsonData("user.dir" + "\\src\\test\\java\\Dirash_Company\\data\\PurchaseOrder.json");
-
-		return new Object[][] {{data.get(0)},{data.get(1)}};
-			
+		return new Object[][] {{"dirash@leena.ai", "Dirash@10","ADIDAS ORIGINAL"},{"dirash+2@leena.ai", "Dirash@10","ZARA COAT 3"}};
+		
+		
 	}
 
 }

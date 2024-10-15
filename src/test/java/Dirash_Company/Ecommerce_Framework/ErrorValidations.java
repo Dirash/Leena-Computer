@@ -10,7 +10,7 @@ import Dirash_Company.pageObjects.ProductCatalogue;
 
 public class ErrorValidations extends BaseTest {
 
-	@Test
+	@Test(groups = "errorHandling")
 	public void submitOrder() throws IOException
 	{
 		// TODO Auto-generated method stub
