@@ -48,7 +48,7 @@ public class Hashmap extends BaseTest {
 	}
 	
 	@DataProvider
-	public String[][] getData()
+	public Object[][] getData()
 	{
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("email","dirash@leena.ai");
@@ -61,7 +61,7 @@ public class Hashmap extends BaseTest {
 		map2.put("product_Name", "ZARA COAT 3");
 	
 
-		return new String[][] {{map},{map2}};
+		return new Object[][] {{map},{map2}};
 		
 		
 	}

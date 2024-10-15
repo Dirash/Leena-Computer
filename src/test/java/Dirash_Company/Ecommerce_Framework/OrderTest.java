@@ -15,7 +15,7 @@ import Dirash_Company.pageObjects.ConfirmationPage;
 import Dirash_Company.pageObjects.OrderPage;
 import Dirash_Company.pageObjects.ProductCatalogue;
 
-public class Object extends BaseTest {
+public class OrderTest extends BaseTest {
 
 	String product_Name = "ADIDAS ORIGINAL";
 	@Test(dataProvider = "getData",groups = "purchaseOrder")
