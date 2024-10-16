@@ -5,12 +5,14 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
 import Dirash_Company.TestComponents.BaseTest;
+import Dirash_Company.TestComponents.Retry;
 import Dirash_Company.pageObjects.ProductCatalogue;
 
 public class ErrorValidations extends BaseTest {
 
-	@Test(groups = "errorHandling")
+	@Test(groups = "errorHandling",retryAnalyzer = Retry.class)
 	public void submitOrder() throws IOException
 	{
 		// TODO Auto-generated method stub

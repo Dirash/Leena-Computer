@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" parallel="tests" name="Submit Order Test(failed)">
+  <test thread-count="5" parallel="tests" name="Error validation Test(failed)">
     <groups>
       <run>
-        <include name="purchaseOrder"/>
+        <include name="errorHandling"/>
       </run>
     </groups>
     <classes>
-      <class name="Dirash_Company.Ecommerce_Framework.StandAloneTest">
+      <class name="Dirash_Company.Ecommerce_Framework.ErrorValidations">
         <methods>
+          <include name="submitOrder"/>
           <include name="closeBrowser"/>
           <include name="LaunchApplication"/>
-          <include name="submitOrder" invocation-numbers="0 1"/>
         </methods>
-      </class> <!-- Dirash_Company.Ecommerce_Framework.StandAloneTest -->
+      </class> <!-- Dirash_Company.Ecommerce_Framework.ErrorValidations -->
     </classes>
-  </test> <!-- Submit Order Test(failed) -->
+  </test> <!-- Error validation Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

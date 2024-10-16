@@ -23,12 +23,12 @@ public class StandAloneTest extends BaseTest {
 	public void submitOrder(HashMap<String ,String> input) throws IOException
 	{
 		// TODO Auto-generated method stub
-		        
+		  
         ProductCatalogue ProductCatalogueobj = LandingPageObj.loginApplication(input.get("email"), input.get("password"));
 		List<WebElement> products = ProductCatalogueobj.getProductlist();
-		ProductCatalogueobj.addProductToCart(input.get(product_Name));
+		ProductCatalogueobj.addProductToCart(input.get("product_Name"));
 		CartPage CartPageobj = ProductCatalogueobj.goToCartPage();
-		Boolean match =CartPageobj.veriftProductDisplay(input.get(product_Name));
+		Boolean match =CartPageobj.veriftProductDisplay(input.get("product_Name"));
 		Assert.assertTrue(match);
 		CheckOutPage CheckOutPageobj = CartPageobj.checkOut();
 		CheckOutPageobj.selectCountry("india");
@@ -50,9 +50,11 @@ public class StandAloneTest extends BaseTest {
 	@DataProvider
 	public Object[][] getData() throws IOException
 	{
-		List<HashMap<String, String>> data = getJSONDatatoMap(System.getProperty("user.dir") + "\\src\\test\\java\\Dirash_Company\\data\\PurchaseOrder.json");
+		List<HashMap<String, String>> data = getJSONDatatoMap(System.getProperty("user.dir")+ "\\src\\test\\java\\Dirash_Company\\data\\PurchaseOrder.json");
+
 		return new Object[][] {{data.get(0)},{data.get(1)}};
 			
 	}
 
+	
 }

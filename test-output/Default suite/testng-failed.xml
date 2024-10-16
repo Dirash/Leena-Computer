@@ -5,9 +5,10 @@
     <classes>
       <class name="Dirash_Company.Ecommerce_Framework.StandAloneTest">
         <methods>
+          <include name="orderHistoryTest"/>
           <include name="closeBrowser"/>
           <include name="LaunchApplication"/>
-          <include name="submitOrder"/>
+          <include name="submitOrder" invocation-numbers="0 1"/>
         </methods>
       </class> <!-- Dirash_Company.Ecommerce_Framework.StandAloneTest -->
     </classes>

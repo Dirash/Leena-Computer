@@ -49,6 +49,86 @@
 		</dependency>
 
 
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>5.1.2</version>
+		</dependency>
+
+
 	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>Regression</id>
+			<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<suiteXmlFiles>
+							<suiteXmlFile>TestSuites/testng.xml</suiteXmlFile>
+						</suiteXmlFiles>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+		</profile>
+		
+		<profile>
+			<id>Purchase</id>
+			<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<suiteXmlFiles>
+							<suiteXmlFile>TestSuites/PurchaseOrder.xml</suiteXmlFile>
+						</suiteXmlFiles>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+		</profile>
+		
+		
+		<profile>
+			<id>Error</id>
+			<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<suiteXmlFiles>
+							<suiteXmlFile>TestSuites/ErrorValidations.xml</suiteXmlFile>
+						</suiteXmlFiles>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+		</profile>
+		
+	</profiles>
+
+	
 
 </project>
